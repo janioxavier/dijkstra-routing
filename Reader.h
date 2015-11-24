@@ -1,9 +1,10 @@
+#pragma once
+
 #include<cstdio>
 #include<iostream>
 #include<string>
 #include<fstream>
 #include<sstream>
-
 
 using std::string;
 using std::ifstream;
