@@ -27,5 +27,5 @@ void Reader::close() {
 }
 
 ifstream Reader::getFile(){
-    return std::basic_ifstream<char>::basic_ifstream(file_);
+    return std::basic_ifstream<char>::basic_ifstream(const file_);
 }

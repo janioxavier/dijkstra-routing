@@ -1,0 +1,18 @@
+#pragma once
+
+#include "Reader.h"
+
+/**
+ * Manipula os dados de entrada, transformando-os
+ *em uma lista de arestas e uma lista de vértices.
+ */
+class HandleInput {
+ public:
+  /**
+   * Construtor que inicializa o reader com
+   *dado um dado nome de arquivo.
+   *
+   * @param filename
+ private:
+  Reader reader;
+}
