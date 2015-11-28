@@ -1,0 +1,28 @@
+#pragma once
+
+#include "Reader.h"
+#include "Edge.h"
+#include <list>
+#include <set>
+
+using std::list;
+
+/**
+ * Manipula os dados de entrada de um dado arquivo, transformando-os
+ * em uma lista de arestas e uma lista de vértices.
+ */
+class HandleInputToGraph {
+ public:
+	HandleInputToGraph(const char* filename);
+  HandleInputToGraph(string filename);
+  list getEdge_List_() const;
+  set getVertex_Set_() const;
+  ~HandleInputToGraph();
+ private:
+ 	void init();
+	void initEdge_List();
+	void initVertex_Set();
+  Reader reader_;
+  list edge_list_;
+  set vertex_set_;
+}

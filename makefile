@@ -1,4 +1,4 @@
-C_COMP=g++
+C_COMP=g++ -g
 FONTES=$(wildcard *.cpp)
 HEADERS=$(wildecard *.h)
 

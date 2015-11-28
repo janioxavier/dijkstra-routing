@@ -1,0 +1,13 @@
+#include "HandleInputToGraph.h"
+
+HandleInputToGraph::HandleInputToGraph(const char* filename) {
+	reader_ (filename);
+}
+
+HandleInputToGraph::HandleInputToGraph(string filename) {
+	reader_ (filename);
+}
+
+HandleInputToGraph::getEdge_List_() {
+
+}

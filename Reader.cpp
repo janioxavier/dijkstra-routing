@@ -1,11 +1,11 @@
 #include "Reader.h"
 
 Reader::Reader(string fileName) {
-    getFile().open(fileName.c_str());  
+    file_.open(fileName.c_str());  
 }
 
 Reader::Reader(const char * filename){
-    getFile().open(filename); 
+    file_.open(filename); 
 }
 
 Reader::~Reader() {
@@ -19,13 +19,10 @@ string Reader::readLine(){
 }
 
 bool Reader::hasNextLine() {
-    return !getFile().eof();
+    return file_.peek() != EOF;
 }
 
 void Reader::close() {
-    getFile().close();
+    file_.close();
 }
 
-ifstream Reader::getFile(){
-    return std::basic_ifstream<char>::basic_ifstream(file_);
-}

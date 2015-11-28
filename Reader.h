@@ -41,7 +41,6 @@ class Reader {
      * fecha o arquivo aberto.
      */
     void close();
-    ifstream getFile();
     /**
      * Destroi o objeto Reader fechando o arquivo.
      */
