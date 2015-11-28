@@ -16,12 +16,15 @@
  */
 class HandleInputToGraph {
  public:
-  HandleInputToGraph(const char* filename): reader_(filename) {};
-  HandleInputToGraph(string filename): reader_(filename) {};
+ HandleInputToGraph(const char* filename): reader_(filename), isDirected_(true){};
+ HandleInputToGraph(string filename): reader_(filename), isDirected_(true){};
+ HandleInputToGraph(const char* filename, bool isDirected): reader_(filename), isDirected_(isDirected){};
+ HandleInputToGraph(string filename, bool isDirected): reader_(filename), isDirected_(isDirected) {};
   void init();
   int getSource() const;
-  std::list<Edge<int, int, int> > getEdge_List_() const;
-  std::set<int> getVertex_Set_() const;
+  std::list<Edge<int, int, int> > getEdge_List() const;
+  std::set<int> getVertex_Set() const;
+  std::list<int> getVertex_List() const;
   std::vector<std::string> split(std::string s, char delim);
   std::string toString();
   ~HandleInputToGraph();
@@ -32,6 +35,7 @@ class HandleInputToGraph {
   void addEdge(std::vector<int> vector);
   Reader reader_;
   int source_;
+  bool isDirected_;
   std::list<Edge<int, int, int> > edge_list_;
   std::set<int> vertex_set_;
 };
