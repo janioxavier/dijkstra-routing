@@ -4,6 +4,7 @@
 
 #include "Reader.h"
 #include "HandleInputToGraph.h"
+#include "BellmanFord.h"
 
 using namespace std;
 
@@ -19,13 +20,25 @@ void testReader() {
 void testHandleInputToGraph() {
 	cout << "Test HandleInputToGraph class\n";
 	string filename ("example.txt");
-	HandleInputToGraph handle(filename);
+	HandleInputToGraph handle(filename, false);
 	handle.init();
 	cout <<	handle.toString();
+}
+
+void testBellmanFord() {
+	cout << "Test BellmanFord class\n";
+	string filename("example.txt");
+	HandleInputToGraph handle(filename, false);
+	handle.init();
+	BellmanFord *bf = new BellmanFord();
+	bf->bellmanFord(handle.getEdge_List(), 
+		handle.getVertex_List(), handle.getSource());
+	cout << bf->toString() << "\n";
 }
 
 int main(int argc, char* argv[]) {
 	testReader();
 	testHandleInputToGraph();
+	testBellmanFord();
   return 0;
 }
