@@ -9,7 +9,12 @@ std::set<int> HandleInputToGraph::getVertex_Set_() const{
 }
 
 void HandleInputToGraph::init() {
+  source_ = readerLineToArray().at(0);
   initEdge_List();
+}
+
+int HandleInputToGraph::getSource() const {
+  return source_;
 }
 
 void HandleInputToGraph::initEdge_List(){
@@ -57,6 +62,7 @@ std::vector<int> HandleInputToGraph::split_toInt(std::string s, char delim) {
 
 std::string HandleInputToGraph::toString() {
   std::stringstream ss;
+  ss << "Source: " << source_ << "\n";
   ss << "Vertex:";
   for (std::set<int>::iterator it = vertex_set_.begin();
        it != vertex_set_.end(); ++it) {
