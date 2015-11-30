@@ -1,0 +1,11 @@
+#include "BellmanFord.h"
+
+BellmanFord::BellmanFord() {
+}
+
+bool BellmanFord::bellmanFord(std::list<Edge<int,int,int> > edgeList,
+			      std::list<int> vertexList, int source) {
+  init(vertexList.size());
+  relaxEdges(edgeList);
+  return checkNegativeCycle();
+}

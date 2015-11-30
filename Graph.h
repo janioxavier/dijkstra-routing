@@ -9,7 +9,7 @@ public:
   virtual ~Graph() {};
 
   virtual void add_edge(T source, T sink) = 0;
-  virtual void add_edge(T source, T sink, T weight) = 0;
+  virtual void add_edge(T source, T sink, W weight) = 0;
 
   virtual unsigned int edges() const = 0;
 

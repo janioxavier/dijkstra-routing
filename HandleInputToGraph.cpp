@@ -1,10 +1,10 @@
 #include "HandleInputToGraph.h"
 
-std::list<Edge<int, int, int> > HandleInputToGraph::getEdge_List_() const{
+std::list<Edge<int,int> > HandleInputToGraph::getEdge_List() const{
   return edge_list_;
 }
 
-std::set<int> HandleInputToGraph::getVertex_Set_() const{
+std::set<int> HandleInputToGraph::getVertex_Set() const{
   return vertex_set_;
 }
 
@@ -15,6 +15,15 @@ void HandleInputToGraph::init() {
 
 int HandleInputToGraph::getSource() const {
   return source_;
+}
+
+std::list<int> HandleInputToGraph::getVertex_List() const {
+  std::list<int> vertex_list;
+  for (std::set<int>::iterator it = vertex_set_.begin();
+       it != vertex_set_.end(); ++it) {
+    vertex_list.push_back(*it);
+  }
+  return vertex_list;
 }
 
 void HandleInputToGraph::initEdge_List(){
@@ -30,8 +39,10 @@ void HandleInputToGraph::addEdge(std::vector<int> vector) {
   vertex_set_.insert(source);
   vertex_set_.insert(sink);
   int weight = vector.at(2);
-  edge_list_.push_back(Edge<int,int,int>(source, sink, weight));
-  
+  edge_list_.push_back(Edge<int,int>(source, sink, weight));
+  if (!isDirected_) {
+    edge_list_.push_back(Edge<int,int>(sink, source, weight));
+  }
 }
 
 std::vector<int> HandleInputToGraph::readerLineToArray(){
@@ -69,9 +80,10 @@ std::string HandleInputToGraph::toString() {
     ss << " " << *it;
   }
   ss << "\nEdge List:\n";
-  for (std::list<Edge<int,int,int> >::iterator it = edge_list_.begin(); 
+  
+  for (std::list<Edge<int,int> >::iterator it = edge_list_.begin(); 
        it != edge_list_.end(); ++it) {
-    Edge<int,int,int> e = *it;
+    Edge<int,int> e = *it;
     ss <<  e.source_ << " ";
     ss <<  e.sink_ << " ";
     ss << e.weight_ << "\n";
