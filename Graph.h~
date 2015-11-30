@@ -4,7 +4,7 @@
 #include <stack>
 #include <limits.h>
 #define NINF INT_MIN
-#define null -1
+#define NULL -1
 
 #include "AdjListNode.h"
 #include "Edge.h"
