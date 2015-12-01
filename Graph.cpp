@@ -92,7 +92,8 @@ string Graph::longestPath(int s)
     ss << "Longest Path from source vertex " << s << "\n";
     for (int i = 0; i < V; i++) {
     	ss << "[" << i << "]" << " = ";
-        (dist[i] == NINF)? ss << "INF ": ss << dist[i] << "\n"; 
+        (dist[i] == NINF)? ss << "INF ": ss << dist[i];
+	ss << "\n";
    	}
    	ss << "Path\n";
    	for (int i = 0; i < V; i++) {

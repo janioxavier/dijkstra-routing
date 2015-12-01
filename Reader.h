@@ -33,6 +33,11 @@ class Reader {
      */
     string readLine();
     /**
+     * Abre um dado arquivo
+     * @param filename nome do arquivo.
+     */
+    void open(string filename);
+    /**
      * @return true se ainda tiver linha, false
      *se encontrar EOF.
      */

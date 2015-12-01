@@ -16,26 +16,26 @@
  */
 class HandleInputToGraph {
  public:
- HandleInputToGraph(const char* filename): reader_(filename), isDirected_(true){init();};
- HandleInputToGraph(string filename): reader_(filename), isDirected_(true){init();};
- HandleInputToGraph(const char* filename, bool isDirected): reader_(filename), isDirected_(isDirected){init();};
- HandleInputToGraph(string filename, bool isDirected): reader_(filename), isDirected_(isDirected) {init();};
+ HandleInputToGraph(const char* filename): reader_(filename), filename_(std::string (filename)), source_(-1) {};
+ HandleInputToGraph(string filename): reader_(filename), filename_(filename), source_(-1) {};
   int getSource() const;
   std::list<Edge<int,int> > getEdge_List() const;
   std::set<int> getVertex_Set() const;
   std::list<int> getVertex_List() const;
   std::vector<std::string> split(std::string s, char delim);
+  bool fileChanged();
+  void update();
+  void init();
   std::string toString();
   ~HandleInputToGraph();
  private:
-  void init();
   void initEdge_List();
   std::vector<int> readerLineToArray();
   std::vector<int> split_toInt(std::string s, char delim);
   void addEdge(std::vector<int> vector);
   Reader reader_;
+  std::string filename_;
   int source_;
-  bool isDirected_;
   std::list<Edge<int,int> > edge_list_;
   std::set<int> vertex_set_;
 };

@@ -18,6 +18,10 @@ string Reader::readLine(){
     return line;
 }
 
+void Reader::open(string filename) {
+  file_.open(filename.c_str(), std::ifstream::in);
+}
+
 bool Reader::hasNextLine() {
     return file_.peek() != EOF;
 }

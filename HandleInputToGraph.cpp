@@ -31,6 +31,7 @@ void HandleInputToGraph::initEdge_List(){
     std::vector<int> tokens = readerLineToArray();
     addEdge(tokens);
   }
+  reader_.close();
 }
 
 void HandleInputToGraph::addEdge(std::vector<int> vector) {
@@ -40,9 +41,6 @@ void HandleInputToGraph::addEdge(std::vector<int> vector) {
   vertex_set_.insert(sink);
   int weight = vector.at(2);
   edge_list_.push_back(Edge<int,int>(source, sink, weight));
-  if (!isDirected_) {
-    edge_list_.push_back(Edge<int,int>(sink, source, weight));
-  }
 }
 
 std::vector<int> HandleInputToGraph::readerLineToArray(){
@@ -89,6 +87,42 @@ std::string HandleInputToGraph::toString() {
     ss << e.weight_ << "\n";
   }
   return ss.str();
+}
+
+bool HandleInputToGraph::fileChanged() {
+  bool isChanged = false;
+  reader_.open(filename_);
+  int source = readerLineToArray().at(0);
+  if (source_ != source) {
+    isChanged = true;
+  }
+  else {
+    for (std::list<Edge<int,int> >::iterator it = edge_list_.begin();
+	 it != edge_list_.end(); ++it) {
+      Edge<int,int> e = (*it);
+      if (reader_.hasNextLine()) {
+	std::vector<int> readLine = readerLineToArray();
+	if (e.source_ != readLine.at(0)
+	    || e.sink_ != readLine.at(1)
+	    || e.weight_ != readLine.at(2)) {
+	  isChanged = true;
+	  break;
+	}
+      }
+    }
+    if (reader_.hasNextLine())
+      isChanged = true;
+    reader_.close();
+  }
+  return isChanged;
+}
+
+void HandleInputToGraph::update() {
+  reader_.close();
+  reader_.open(filename_);
+  edge_list_.clear();
+  vertex_set_.clear();
+  init();
 }
 
 HandleInputToGraph::~HandleInputToGraph() {
